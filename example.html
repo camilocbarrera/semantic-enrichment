@@ -1,0 +1,116 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 500px;
+            height: 500px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"id": "Tom Hanks", "label": "Tom Hanks", "labelHighlightBold": true, "shape": "dot", "size": 20}, {"id": "Toy Story 3", "label": "Toy Story 3", "shape": "dot", "size": 10}, {"id": "John Ratzenberger", "label": "John Ratzenberger", "labelHighlightBold": true, "shape": "dot", "size": 20}, {"id": "Michael Keaton", "label": "Michael Keaton", "labelHighlightBold": true, "shape": "dot", "size": 20}, {"id": "Tim Allen", "label": "Tim Allen", "labelHighlightBold": true, "shape": "dot", "size": 20}, {"id": "Joan Cusack", "label": "Joan Cusack", "labelHighlightBold": true, "shape": "dot", "size": 20}, {"id": "Wallace Shawn", "label": "Wallace Shawn", "labelHighlightBold": true, "shape": "dot", "size": 20}, {"id": "Don Rickles", "label": "Don Rickles", "labelHighlightBold": true, "shape": "dot", "size": 20}, {"id": "John Morris", "label": "John Morris", "labelHighlightBold": true, "shape": "dot", "size": 20}, {"id": "Ned Beatty", "label": "Ned Beatty", "labelHighlightBold": true, "shape": "dot", "size": 20}, {"id": "Jodi Benson", "label": "Jodi Benson", "labelHighlightBold": true, "shape": "dot", "size": 20}, {"id": "Estelle Harris", "label": "Estelle Harris", "labelHighlightBold": true, "shape": "dot", "size": 20}]);
+        edges = new vis.DataSet([{"arrows": "to", "from": "Tom Hanks", "to": "Toy Story 3", "weight": 1}, {"arrows": "to", "from": "Toy Story 3", "to": "John Ratzenberger", "weight": 1}, {"arrows": "to", "from": "Toy Story 3", "to": "Michael Keaton", "weight": 1}, {"arrows": "to", "from": "Toy Story 3", "to": "Tim Allen", "weight": 1}, {"arrows": "to", "from": "Toy Story 3", "to": "Joan Cusack", "weight": 1}, {"arrows": "to", "from": "Toy Story 3", "to": "Wallace Shawn", "weight": 1}, {"arrows": "to", "from": "Toy Story 3", "to": "Don Rickles", "weight": 1}, {"arrows": "to", "from": "Toy Story 3", "to": "John Morris", "weight": 1}, {"arrows": "to", "from": "Toy Story 3", "to": "Ned Beatty", "weight": 1}, {"arrows": "to", "from": "Toy Story 3", "to": "Jodi Benson", "weight": 1}, {"arrows": "to", "from": "Toy Story 3", "to": "Estelle Harris", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "repulsion": {
+            "centralGravity": 0.5,
+            "damping": 0.09,
+            "nodeDistance": 150,
+            "springConstant": 0.05,
+            "springLength": 100
+        },
+        "solver": "repulsion",
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
